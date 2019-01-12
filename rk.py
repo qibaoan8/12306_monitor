@@ -79,7 +79,7 @@ class RClient(object):
 if __name__ == '__main__':
     from config import *
 
-    rc = RClient(rk_username, rk_password, '1', 'b40ffbee5c1cf4e38028c197eb2fc751')
+    rc = RClient(rk_username, rk_password, rk_id, rk_key)
     im = open('c.jpg', 'rb').read()
     print rc.rk_create(im, 6113)
 

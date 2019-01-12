@@ -36,7 +36,7 @@ class Train():
         }
 
         # 初始化cookie环境
-        self.cookie_path = "cookie.txt"
+        self.cookie_path = os.path.abspath(os.path.dirname(__file__)) + "/cookie.txt"
         # 将LWPCookieJar类型的cookie 赋值给 RequestsCookiesJar类型的cookie；也能使用，绝了。
         self.session = requests.Session()
         self.session.cookies = cookielib.LWPCookieJar(self.cookie_path)
@@ -81,7 +81,7 @@ class Train():
         verify_photo = base64.b64decode(ret_json.get('image'))
 
         # 识别验证码
-        rc = RClient(rk_username, rk_password, '1', 'b40ffbee5c1cf4e38028c197eb2fc751')
+        rc = RClient(rk_username, rk_password, rk_id, rk_key)
         verify_text = rc.rk_create(verify_photo, 6113)
         log.info("verify text: %s" % verify_text)
 
