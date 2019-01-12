@@ -155,12 +155,20 @@ if __name__ == '__main__':
 
     ret_json = train.get_orders()
     if "data" in ret_json.keys():
-        print "有订单了"
-        log.info("有订单了")
-        send_notify()
-    else:
-        print "没有订单"
-        log.info("没有订单")
+        orderDBList = ret_json['data'].get('orderDBList')
+        if orderDBList:
+            for order in orderDBList:
+                tickets = order.get('tickets')
+                if tickets:
+                    for ticket in tickets:
+                        if ticket.get('ticket_status_name') == u'待支付':
+                            print "有订单了"
+                            log.info("有订单了")
+                            send_notify()
+                            quit()
+
+    print "没有订单"
+    log.info("没有订单")
 
 
 
