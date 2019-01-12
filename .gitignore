@@ -1,0 +1,7 @@
+# Created by .ignore support plugin (hsz.mobi)
+noticentersdk.py
+logs/
+config.py
+cookie.txt
+*.pyc
+.idea/
